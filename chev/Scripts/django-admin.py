@@ -1,4 +1,4 @@
-#!C:\Users\Ijeoma\Desktop\sevenup\chev\Scripts\python.exe
+#!c:\users\ijeoma\desktop\sevenup\chev\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
