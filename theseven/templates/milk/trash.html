@@ -1,0 +1,76 @@
+
+    {% block comment_list %}
+<style>
+
+#combody{display:block; letter-spacing:0.03em; line-height: 1.7em !important;   margin:8px; font-size:12px;
+                }
+    #req-pic{margin: 3px 0 0 11px;
+       height:37px; width:37px; border:1px solid plum;
+        border-radius:50%;
+       background-repeat:no-repeat;
+       background-size:cover;
+       }
+       .lh{ display:block; line-height:20px;}
+       #bbox{background-color:bisque; width:40%; height:31px; border:none; border-radius:30px; margin-top:7px;}
+       </style>
+<div style=" padding-top:4px;">
+      <ul class="list-group">
+        {% for comment in comments %}
+      <li class="list-group-item mb-2" style="padding:7px 4px 7px 4px !important;border-radius:14px;">
+          <div class="row">
+              <div class="col-2">
+          <div id="req-pic" style="background-image:url('{{ comment.dp }}');">
+          </div>
+              </div>
+              <div class="col-10">
+          <div  class="lh">
+          <a href="#">
+          <span style="margin-top:10px; font-size:13px; color:purple; font-weight:649;">
+              {{ comment.name}}
+          </span>
+          </a>
+             <span style="float:right; font-size:13px; color:grey;">
+                  <i class="fa fa-clock-o"></i>
+                 <span style=" font-size:11px; color:grey; ">{{ comment.created_on }} ago</span>
+             </span><br>
+              {% if comment.name.profile.country %}
+          <span style="font-size:12px; color:grey;">
+              <i class="fa fa-map-marker"></i> {{ comment.name.profile.country|capfirst }}
+          </span>
+              {% endif %}
+          </div>
+              </div>
+          </div>
+              <hr style="margin: 5px!important;">
+             <span id="combody">{{ comment.body }}</span>
+<center>
+
+    <i class="fa fa-heart-o ml-1 text-muted" id="hearticon" aria-hidden="true"></i>
+
+        <a href="{{comment.get_absolute_url}}">
+            <i class="fa fa-comments-o ml-5 text-muted"  id="comicon">
+                <sup><small style="color:brown; margin:0">{{comment.replies.count}}</small></sup>
+            </i>
+        </a>
+       {% if request.user == comment.name %}
+    <a href="{% url 'comment_update' comment.pk %}">
+      <i class="fa fa-pencil-square-o ml-5 text-muted"   id="editicon"></i>
+    </a>
+    <a href="{% url 'comment_confirm_delete' comment.pk %}?next={{ request.path}}">
+      <i class="fa fa-trash-o ml-5 text-muted" aria-hidden="true"  id="delicon"></i>
+    </a>
+    {% endif %}
+</center>
+
+      </li>
+        {% endfor %}
+      </ul>
+</div>
+{% endblock %}
+
+
+        <i class="fa fa-thumbs-up ml-3 text-muted" id="likon" aria-hidden="true"></i>
+        <small style="color:grey; font-size:12px; margin-right:15px;">
+            <span >{{ comment.likes.count }}</span>
+            <a href="{% url 'comment_like' comment.pk %}">like</a>
+        </small>

@@ -1,0 +1,41 @@
+
+{% block searched_posts %}
+<center>
+      {% for post in user_posts %}
+{{ post.title }}
+        {% endfor %}
+
+      <span id="date" class="mt-4">{{current_date | date:"D d M Y"}}</span></h3>
+  </center>
+<ul class="list-group my-3">
+{% for post in posts %}
+    <li  class="list-group-item" style="border:1px solid #D8D8D8;">
+        {% if post.post_pic %}
+        <span id="post_title" class="mb-2">{{ post.title }}
+    </span>
+        <img src="{{ post.post_pic.url}}"  id="postpic"><br>
+    <span class="mt-3">
+        <i class="fa fa-comments-o " id="commicon">
+            <sup><small class="text-danger">{{ post.comments.count }}</small></sup>
+        </i>
+        <i class="fa fa-eye " id="commicon"></i>
+        <a href="{% url 'post_detail' post.slug %}" id="more"></a>
+    </span>
+        {% else %}
+
+        <span id="post_title">{{ post.title }}</span><br>
+    <span class="mt-2">
+        <i class="fa fa-comments-o" id="commicon"><sup>
+            <small class="text-danger">{{ post.comments.count }}</small>
+        </sup></i>
+        <i class="fa fa-eye " id="commicon"></i>
+        <a href="{% url 'post_detail' post.slug %}" id="more" style="float:right;">read more</a>
+    </span>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+<center>
+    <a href="{% url 'post_form' %}" class="btn btn-danger ">Create Post</a>
+</center>
+{% endblock %}

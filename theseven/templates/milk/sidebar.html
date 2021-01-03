@@ -1,0 +1,15 @@
+
+{% block sidebar %}
+
+<div class="mx-auto" >
+    {% if user.is_authenticated %}
+    <a href="{% url 'profile_detail' request.user.id %}">
+        <i class="fa fa-user-circle-o mt-2" style="font-size:40pt; color:black;"></i><br><small>My profile</small> </a>
+    {% endif %}
+<div  class="sidead mt-2">
+        <center >
+            <small class="my-auto">ADVERTISEMENT</small>
+        </center>
+</div>
+</div>
+{% endblock %}

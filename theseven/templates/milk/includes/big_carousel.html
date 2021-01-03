@@ -1,0 +1,57 @@
+{% block big_carousel %}
+
+ {% load static %}
+<center>
+<div id="carouselExampleControls" class="carousel slide my-5" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <div id="carousel-card" style="background-color:deeppink">
+            <div>
+            </div>
+            <div id="car-text">
+                <p class="text-center">
+                    <b>Buy and sell your products<br>
+                        Render your services on MilkMarket</b>
+                </p>
+                <center><button class="btn btn-warning">
+                    <b>Get started</b>
+                </button></center>
+            </div>
+
+        </div>
+    </div>
+    <div class="carousel-item">
+        <div id="carousel-card" style="background-color:#BDE7C8;">
+            <div>
+
+            </div>
+            <div id="car-text">
+                <p  class="text-center text-dark ">
+                    <b>
+                        Learnt a new skill?<br>
+                        Let your neighbors know about it<br>
+                    </b>
+                </p>
+                    <button class="btn btn-info btn-md mt-3" style="border-radius:50px;">
+                        Get started
+                    </button>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-item">
+        <div id="carousel-card" style="background-image:url('{% static 'market/paintergirl.jpg' %}'); background-size:85%; background-margin-bottom:30px;">
+    </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</center>
+
+{% endblock %}

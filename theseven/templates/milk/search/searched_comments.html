@@ -1,0 +1,43 @@
+
+    {% block searched_comments %}
+    {% if forloop.first %}
+    <div class="row">
+  {% endif %}
+<div class="col-lg-6">
+          <div id="com-pic" style="background-image:url('{{ comment.dp }}'); float:left;">
+          </div>
+    <div id="comment_box">
+        <span id="commenter">{{ comment.name }}
+            {% if comment.name == post.creator %}<i class="fa fa-microphone"></i>{% endif %}
+        </span>
+                <small class="text-muted " id="comment_time"><i class=" fa fa-clock-o"></i> {{ comment.created_on }}</small>
+
+            <br><small id="combody">{{ comment.body }}</small><br>
+
+<center>
+    <i class="fa fa-heart-o ml-1" id="hearticon" aria-hidden="true"></i>
+
+        <a href="{{comment.get_absolute_url}}">
+            <i class="fa fa-comments-o ml-5"  id="comicon">
+                <sup><small style="color:brown; margin:0">{{comment.replies.count}}</small></sup>
+            </i>
+        </a>
+       {% if user.get_username == comment.name %}
+    <a href="{% url 'comment_update' comment.pk %}">
+      <i class="fa fa-pencil-square-o ml-5"   id="editicon"></i>
+    </a>
+    <a href="{% url 'comment_confirm_delete' comment.pk %}?next={{ request.path}}">
+      <i class="fa fa-trash-o ml-5" aria-hidden="true"  id="delicon"></i>
+    </a>
+    {% endif %}
+</center>
+
+    </div>
+</div>
+{% if forloop.counter|divisibleby:2 %}</div>
+  <div class="row">
+{% endif %}
+{% if forloop.last %}
+</div>
+{% endif %}
+{% endblock %}
