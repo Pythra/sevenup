@@ -13,8 +13,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <style>
+.container-fluid {
+    min-height: calc(100vh - 95px);
+}
 a, a:hover, a:focus{ text-decoration:none; color:inherit;}
-footer{color:white; height:50px; background-color:black; font-size:13px; padding:5px; text-align:center}
+footer{color:white; height:50px; background-color:black; font-size:13px; padding:5px; text-align:center; width:100%; bottom:0}
 #carousel-card{width:80%; height:180px; border-radius:26px; }
 #car-pic{
         float:left;
@@ -32,9 +35,9 @@ footer{color:white; height:50px; background-color:black; font-size:13px; padding
   {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'milk/style.css' %}">
 </head>
-<body>
+<body style="">
 {% include 'milk/includes/nav.html' %}
-<div class="container-fluid mb-5">
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-3" id="sidead">
         <div class="container">
@@ -53,5 +56,8 @@ footer{color:white; height:50px; background-color:black; font-size:13px; padding
     </div>
 
 </div>
+<footer>
+        Copyright &#169 2020 The 7000 movement
+</footer>
 </body>
 </html>

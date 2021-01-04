@@ -11,10 +11,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <script data-ad-client="ca-pub-2080630695499367" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     {% load static %}
 <style>
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+
   .navmain{ color:white; font-weight:550;}
-  .navbar-brand{margin-left:5px; font-size:19px; color:white;font-family:"Audiowide";}
+  .navbar-brand{margin-left:5px; font-size:19px; color:purple;font-family:"Audiowide";}
 
 
 
@@ -27,13 +30,13 @@
   </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg" style="background-color:#BF00FF;" >
+    <nav class="navbar navbar-expand-lg" style="background-color:#FDD1FF;" >
     <a href="{% url 'home' %}" class="navbar-brand">
         <span >The 7000movement</span>
     </a>
   <span class="navbar-toggler"  data-toggle="collapse" data-target="#navbarToggler"
           aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-   <i class="fa fa-bars" style="font-size:23px; color:white" ></i>
+   <i class="fa fa-bars" style="font-size:23px;" ></i>
   </span>
 
   <div class="collapse navbar-collapse" id="navbarToggler">
@@ -48,7 +51,7 @@
                     Register</span>
             </a>
             <a href="{% url 'login'%}?next={{ request.path}}"  >
-                <span class="navmain btn btn-sm">Login</span>
+                <span class="navmain btn btn-sm text-dark">Login</span>
             </a>
           {% endif %}
       </div>
