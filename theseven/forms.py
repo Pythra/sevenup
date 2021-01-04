@@ -39,7 +39,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = (
-            'dp', 'first_name', 'last_name', 'gender', 'birthday', 'country', 'state', 'bio','job'
+            'dp', 'gender', 'birthday', 'country', 'state', 'bio','job'
         )
 
         widgets = {

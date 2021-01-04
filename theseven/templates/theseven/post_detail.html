@@ -42,7 +42,7 @@
       <img src="{{ post.post_pic.url }}" id="postpic">
     {% endif %}
 </blockquote>
-       {% if request.user == post.creator %}
+       {% if request.user == post.creator or user.is_superuser %}
     <span style="float:right">
     <a href="{% url 'post_update' post.slug %}">
       <i style="font-size:23px;" class="fa fa-pencil-square-o ml-5  text-muted"></i>

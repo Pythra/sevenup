@@ -7,7 +7,7 @@
 @media( max-width:768px){
         #box{ width:320px; }}
 
-          #prodp{height:70px; width:70px; border:2px solid lightgrey;
+          #prodp{height:70px; width:70px; border:1px solid lightgrey;
         border-radius:50%;
        background-repeat:no-repeat;
        background-size:cover;
@@ -22,7 +22,7 @@
           .tag{ border:none; background-color: ; width:100%}
 
           #bio{color:grey;}
-          #binfo{  color:brown; }
+          #binfo{  color:black; }
 #pinfo{background-color:#FDD1FF; opacity:0.8; border-radius:40px; padding:6px; margin-top:4px; display:inline-block;}
 .ppinfo{ font-size:14px;}
 {% endblock %}
@@ -45,12 +45,17 @@
             </div>
             <div class="col-8">
                 <span style="font-weight:649;">{{ user|capfirst }}</span>
+
+                {% if request.user == user %}
+                <a href="{% url 'profile' %}" >
+                    <i class="fa fa-pencil-square-o" style="font-size:26px"></i>
+                </a><br>
+                {% endif %}
                 <div style="display:block; line-height:0.9em;">
 
 <span style="font-size:11px"> {{ user.profile.job }}<br>
                 <i class="text-dark">Member since </i><b class="text-dark" style="opacity:1.8"> {{ user.profile.joined }}</b>
 </span>
-
 
             </div>
         </div>
@@ -58,12 +63,6 @@
     <br>
         <div class="tag">
 <div  class="mb-3 ml-3 ppinfo">
-{% if user.profile.first_name or user.profile.last_name %}
-    <span  id="pinfo"><i class="fa fa-pencil"></i>
-        <b id="binfo">
-        {{ user.profile.first_name }} {{ user.profile.last_name }}</b><br>
-    </span>
-    {% endif %}
     <span id="pinfo"><i class="fa fa-male"></i>
     <b id="binfo">{{ user.profile.gender }} </b><br>
     </span>
@@ -86,18 +85,10 @@
                 BIO<br>{{ user.profile.bio }}<br>
             </div>
 </center>
-                {% if request.user == user %}
-                <a href="{% url 'profile' %}" >
-                    <span class="pull-right">
-                        Edit profile
-                    </span>
-                </a><br>
-                {% endif %}
 {% if posts %}
 <small style="color:brown; font-weight:600; margin-left:8px">MY POSTS</small>
         {% include 'theseven/general_post_list.html' %}
 {% endif %}
-    <hr>
 <center>
 </center></div>
 {% endif %}
