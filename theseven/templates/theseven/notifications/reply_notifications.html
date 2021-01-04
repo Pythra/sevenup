@@ -1,0 +1,51 @@
+ {% extends 'theseven/base.html' %}
+{% block title %}
+#redot{border-radius:50%; border:none; background-color:purple; height:11px; width:11px; display:inline-block;
+       float:right; color:white; font-size:8px; text-align:center}
+.curve{width:auto; height:20px; background-color:whitesmoke; border-none; border-radius:80px; padding:7px; color:black}
+{% endblock %}
+
+{% block content %}
+<h3 class="mt-4">Notifications</h3>
+<div class="row my-3">
+    <div class="col-3">
+        <span class="curve" style="background-color:#FFE8FF;">
+        <a href="{% url 'rep_notifications' %}" style="color:black; font-size:15px; font-size:15px;">
+            Replies
+        </a>
+        </span>
+    </div>
+    <div class="col-4">
+        <span class="curve">
+        <a href="{% url 'com_notifications' %}" style="color:black; font-size:15px;">
+            Comments
+        </a>
+            {% if ncomments %}
+                <span id="redot">{{ ncomments.count }}</span>
+            {% endif %}
+        </span>
+    </div>
+    <div class="col-4 ">
+        <span class="curve">
+        <a href="{% url 'men_notifications' %}" style="color:black; font-size:15px;">
+            Mentions
+        </a>
+            {% if nmentions %}
+                <span id="redot">{{ nmentions.count }}</span>
+            {% endif %}
+        </span>
+    </div>
+    </div>
+    <ul class="list-group mt-4">
+            {% for rep in nreplies %}
+            <li class="list-group-item" style=" padding:6px; padding-bottom:12px; font-size:14px; display:block; border-left:none; border-right:none;">
+        <a href="{% url 'comment_detail' rep.comment.pk %}" style="display:block; color:black">
+
+            <b>{{ rep.name|capfirst }}</b> replied to your comment "<b>{{ rep.comment.body }}</b>".
+        </a>
+            <small style="float:right; margin-top:4px;">{{ rep.created_on| timesince}} ago</small>
+            </li>
+            {% endfor %}
+      </ul>
+
+{% endblock %}

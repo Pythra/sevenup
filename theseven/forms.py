@@ -14,7 +14,7 @@ class CommentForm(forms.ModelForm):
             'body': Textarea(attrs={
                 'style': 'border-radius:7px; width:100%; font-size:14px; padding:4px; border:1px solid grey;',
                 'placeholder': 'Write a comment',
-                'rows': '7'}),
+                'rows': '4'}),
         }
 
 

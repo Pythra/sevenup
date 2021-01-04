@@ -29,8 +29,8 @@ def post_list(request):
         note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'posts': posts,
-                   'current_date': date, 'page_obj': page_obj}
-    return render(request, 'milk/post_list.html', context)
+                   'date': date, 'page_obj': page_obj}
+    return render(request, 'theseven/post_list.html', context)
 
 
 def post_detail(request, slug):
@@ -60,7 +60,7 @@ def post_detail(request, slug):
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'form': form, 'post': post, 'slug': slug, 'comments': comments, 'visits': post.visits,
                    }
-    return render(request, 'milk/post_detail.html', context)
+    return render(request, 'theseven/post_detail.html', context)
 
 
 @login_required
@@ -83,23 +83,23 @@ def post_create(request):
         note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'form': form}
-    return render(request, 'milk/post_form.html', context)
+    return render(request, 'theseven/post_form.html', context)
 
 
 class PostUpdate(UpdateView):
-    template_name = 'milk/post_update.html'
+    template_name = 'theseven/post_update.html'
     model = Post
     form_class = PostForm
 
 
 class PostDelete(DeleteView):
-    template_name = 'milk/post_confirm_delete.html'
+    template_name = 'theseven/post_confirm_delete.html'
     model = Post
     success_url = reverse_lazy('home')
 
 
 class CommentUpdate(UpdateView):
-    template_name = 'milk/comment_edit.html'
+    template_name = 'theseven/comment_edit.html'
     model = Comment
     form_class = CommentForm
 
@@ -111,7 +111,7 @@ class CommentUpdate(UpdateView):
 
 
 class CommentDelete(DeleteView):
-    template_name = 'milk/comment_confirm_delete.html'
+    template_name = 'theseven/comment_confirm_delete.html'
     model = Comment
 
     def get_success_url(self):
@@ -122,7 +122,7 @@ class CommentDelete(DeleteView):
 
 
 class ReplyUpdate(UpdateView):
-    template_name = 'milk/reply_edit.html'
+    template_name = 'theseven/reply_edit.html'
     model = Reply
     form_class = ReplyForm
 
@@ -132,7 +132,7 @@ class ReplyUpdate(UpdateView):
 
 
 class ReplyDelete(DeleteView):
-    template_name = 'milk/reply_confirm_delete.html'
+    template_name = 'theseven/reply_confirm_delete.html'
     model = Reply
     success_url = reverse_lazy('home')
 
@@ -168,7 +168,7 @@ def profile_detail(request, pk):
             context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                        'p_form': profile_form
                        }
-        return render(request, 'milk/profile_update.html', context)
+        return render(request, 'theseven/profile_update.html', context)
 
     my_posts = Post.objects.filter(creator=user)[:5]
     my_comments = Comment.objects.filter(name=user)
@@ -182,7 +182,7 @@ def profile_detail(request, pk):
         note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'user': user, 'posts': my_posts, 'my_comments': my_comments}
-    return render(request, 'milk/profile_detail.html', context)
+    return render(request, 'theseven/profile_detail.html', context)
 
 
 @login_required
@@ -211,7 +211,7 @@ def update_profile(request):
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'p_form': profile_form
                    }
-    return render(request, 'milk/profile_update.html', context)
+    return render(request, 'theseven/profile_update.html', context)
 
 
 def comment_detail(request, pk):
@@ -236,7 +236,7 @@ def comment_detail(request, pk):
         note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'form': form, 'comment': comment, 'replies': replies, 'pk': pk}
-    return render(request, 'milk/comment_detail.html', context)
+    return render(request, 'theseven/comment_detail.html', context)
 
 
 def search(request):
@@ -252,7 +252,7 @@ def search(request):
         note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
                    'posts': posts, 'comments': comments, 'query': query}
-    return render(request, 'milk/search_home.html', context)
+    return render(request, 'theseven/search_home.html', context)
 
 
 @login_required
@@ -264,7 +264,7 @@ def reply_notifications(request):
     replies = Reply.objects.filter(comment__name=request.user).order_by('-created_on')
     replies.update(not_status='seen')
     context = {'nmentions': mentions, 'ncomments': comments, 'nreplies': replies}
-    return render(request, 'milk/notifications/reply_notifications.html', context)
+    return render(request, 'theseven/notifications/reply_notifications.html', context)
 
 
 @login_required
@@ -277,7 +277,7 @@ def comment_notifications(request):
         name=request.user).order_by('-created_on')
     comments.update(not_status='seen')
     context = {'nmentions': mentions, 'ncomments': comments, 'nreplies': replies}
-    return render(request, 'milk/notifications/comment_notifications.html', context)
+    return render(request, 'theseven/notifications/comment_notifications.html', context)
 
 
 @login_required
@@ -289,12 +289,12 @@ def mention_notifications(request):
         name=request.user).order_by('-created_on')
     mentions.update(not_status='seen')
     context = {'nmentions': mentions, 'ncomments': comments, 'nreplies': replies}
-    return render(request, 'milk/notifications/mention_notifications.html', context)
+    return render(request, 'theseven/notifications/mention_notifications.html', context)
 
 
 class SignUpView(View):
     form_class = UserRegisterForm
-    template_name = 'milk/signup.html'
+    template_name = 'theseven/signup.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>The 7000 movement Homepage</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo+Da+2" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<style>
+@media( min-width:768px)
+{.sm{display:none;}}
+
+
+@media( max-width:768px)
+{.bg{display:none;}
+      }
+.container-fluid {
+    min-height: calc(100vh - 95px);
+}
+a:focus{ text-decoration:none;}
+footer{color:white; height:40px; background-color:grey; font-size:13px; padding:5px; width:100%; bottom:0}
+#carousel-card{width:80%; height:180px; border-radius:26px; }
+#car-pic{
+        float:left;
+        height:180px;
+        border:1px; border-radius:25px 3px 0px 25px;
+        background-repeat:no-repeat;
+       }
+#car-text{ color:white; font-size:24px;}
+#vuebox{border: 1px solid red; height:40px; width:60px; }
+
+
+#carousel-card-sm{width:95%; height:90px; border-radius:26px; }
+{% block title %}{% endblock %}
+   </style>
+  {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'milk/style.css' %}">
+</head>
+<body style="">
+{% include 'theseven/includes/nav.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 bg" id="sidead">
+        <div class="container">
+            {% block sidebar %} {% include 'theseven/includes/sidebar.html' %} {% endblock sidebar %}
+        </div>
+        </div>
+    <div class="col-sm col-lg-9" style="padding:5px">
+            <div class="bg">
+                {% block big_blog_nav %} {% include 'theseven/includes/big_blog_nav.html' %} {% endblock big_blog_nav %}
+            </div>
+            <div class="sm">
+                {% block small_blog_nav %} {% include 'theseven/includes/small_blog_nav.html' %} {% endblock small_blog_nav %}
+            </div>
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+
+</div>
+<footer class="mt-2">
+        <center style="text-align:center; ">
+            Copyright &#169 2020 The 7000 movement
+        </center>
+</footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'theseven/base.html' %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<center><h5 class="my-4">Edit Profile</h5></center>
+<div style="font-size:14px; margin:5px">
+    {% if request.user.profile.dp %}
+        <img class="my-4" src="{{ request.user.profile.dp.url }}">
+    {% endif %}
+        <form method="post" enctype = "multipart/form-data">
+          {% csrf_token %}
+
+            {{ p_form.as_p }}
+
+          <button class="btn btn-info mt-3" type="submit">Update</button>
+        </form>
+</div>
+    {% endblock %}

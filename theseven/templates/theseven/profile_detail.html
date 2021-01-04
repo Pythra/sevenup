@@ -1,0 +1,104 @@
+{% extends 'theseven/base.html' %}
+{% block title %}
+
+
+          #followbtn{ float:right; }
+
+@media( max-width:768px){
+        #box{ width:320px; }}
+
+          #prodp{height:70px; width:70px; border:2px solid lightgrey;
+        border-radius:50%;
+       background-repeat:no-repeat;
+       background-size:cover;
+                }
+
+        #icons{ float:center; margin-top:0px}
+          #social{ font-size:14pt; color:brown; margin:0px 0px 0px 7px;}
+
+ .fa-pencil-square-o{ color: grey; float:right;}
+
+
+          .tag{ border:none; background-color: ; width:100%}
+
+          #bio{color:grey;}
+          #binfo{  color:brown; }
+#pinfo{background-color:#FDD1FF; opacity:0.8; border-radius:40px; padding:6px; margin-top:4px; display:inline-block;}
+.ppinfo{ font-size:14px;}
+{% endblock %}
+{% block content %}
+  {% load static %}
+
+{% if request.user.profile.visits == 1 %}
+{% include 'milk/profile_form.html' %}
+{% else %}
+                 <div class="mt-3">
+        <div class="row">
+            <div class="col-4" style="display:block;">
+                {% if user.profile.dp %}
+                  <div id="prodp" style="background-image:url('{{ user.profile.dp.url }}'); float:right;">
+                  </div>
+                {%  else %}
+                <div id="prodp" style="background-image:url('{% static 'theseven/default.jpg' %}'); float:right;">
+                  </div>
+                {%  endif %}
+            </div>
+            <div class="col-8">
+                <span style="font-weight:649;">{{ user|capfirst }}</span>
+                <div style="display:block; line-height:0.9em;">
+
+<span style="font-size:11px"> {{ user.profile.job }}<br>
+                <i class="text-dark">Member since </i><b class="text-dark" style="opacity:1.8"> {{ user.profile.joined }}</b>
+</span>
+
+
+            </div>
+        </div>
+                 </div>
+    <br>
+        <div class="tag">
+<div  class="mb-3 ml-3 ppinfo">
+{% if user.profile.first_name or user.profile.last_name %}
+    <span  id="pinfo"><i class="fa fa-pencil"></i>
+        <b id="binfo">
+        {{ user.profile.first_name }} {{ user.profile.last_name }}</b><br>
+    </span>
+    {% endif %}
+    <span id="pinfo"><i class="fa fa-male"></i>
+    <b id="binfo">{{ user.profile.gender }} </b><br>
+    </span>
+
+    <span id="pinfo"><i class="fa fa-heartbeat"></i>
+        <b id="binfo">{{ user.profile.birthday }}</b><br>
+    </span>
+
+    <span id="pinfo"> <i class="fa fa-envelope"></i>
+    <b id="binfo">{{ user.email }}</b><br>
+    </span>
+
+    <span id="pinfo"> <i class="fa fa-map-marker"></i>
+    <b id="binfo">{% if user.profile.state %}{{ user.profile.state }},{% endif %} {{ user.profile.country }}</b><br>
+    </span>
+</div>
+        </div>
+<center>
+            <div class="mb-4 mt-4" style="display:block; line-height:1.4em; font-size:12px; color:grey; margin:4px;">
+                BIO<br>{{ user.profile.bio }}<br>
+            </div>
+</center>
+                {% if request.user == user %}
+                <a href="{% url 'profile' %}" >
+                    <span class="pull-right">
+                        Edit profile
+                    </span>
+                </a><br>
+                {% endif %}
+{% if posts %}
+<small style="color:brown; font-weight:600; margin-left:8px">MY POSTS</small>
+        {% include 'theseven/general_post_list.html' %}
+{% endif %}
+    <hr>
+<center>
+</center></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% block small_carousel %}
+ {% load static %}
+<style>
+
+#car-pic-sm{width:80%;
+        border:1px; width:80%;height:auto; background-size:cover;
+        background-repeat:no-repeat; border-radius:26px;
+       height:140px;}
+#car-text{ color:white; font-size:24px;}
+#carousel-card-sm{width:95%; height:auto; border-radius:26px; }
+       </style>
+<center>
+<div id="carouselExampleControls" class="carousel slide my-3" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <div id="carousel-card-sm" >
+
+                <img id="car-pic-sm" src="{% static 'theseven/health.jpg' %}">
+
+
+    </div>
+  </div>
+</div>
+</center>
+
+{% endblock %}
