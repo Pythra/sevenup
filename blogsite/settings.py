@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'fz1jz&*8=q5)0!d0^a6fcjgjfw$#ma%i-*qpuvzekz5w^i+p9)'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '1wryj_(g&0)iclx*mh7#)hm^pdjam_5w8(dvm54fzg6taz--=v')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['the7000movement.herokuapp.com', 'localhost', 'the7000movement.com', 'www.the7000movement.com']
 # Application definition

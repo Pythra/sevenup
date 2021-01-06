@@ -87,9 +87,14 @@ def post_create(request):
 
 
 class PostUpdate(UpdateView):
-    template_name = 'theseven/post_update.html'
+    template_name = 'theseven/post_edit.html'
     model = Post
     form_class = PostForm
+
+    def get_success_url(self):
+        slug = self.kwargs["slug"]
+        post = Post.objects.get(slug=slug)
+        return reverse('post_detail', kwargs={"slug": slug})
 
 
 class PostDelete(DeleteView):

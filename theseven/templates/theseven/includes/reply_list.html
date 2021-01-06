@@ -69,12 +69,12 @@
         {% endif %}
     </div>
        {% if request.user == comment.name or request.user.is_superuser %}
-    <a href="{% url 'reply_update' comment.pk %}">
+    <a href="{% url 'reply_update' reply.pk %}">
                 <small style="color:grey; font-size:12px; margin-right:15px;">
                     edit
                 </small>
     </a>
-    <a href="{% url 'reply_confirm_delete' comment.pk %}?next={{ request.path}}">
+    <a href="{% url 'reply_confirm_delete' reply.pk %}?next={{ request.path}}">
                 <small style="color:grey; font-size:12px; margin-right:15px;">
                     delete
                 </small>
