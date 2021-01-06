@@ -31,7 +31,7 @@ class Profile(models.Model):
     birthday = models.CharField(max_length=20, blank=True, null=True, )
     job = models.CharField(max_length=20, blank=True, null=True, )
     email_confirmed = models.BooleanField(default=False)
-    dp = models.ImageField(upload_to='images/', blank=True, null=True, default='default.jpg')
+    dp = models.ImageField(upload_to='images/', blank=True, null=True)
     country = models.CharField(max_length=20, blank=True, default='Nigeria')
     state = models.CharField(max_length=20, blank=True)
     bio = models.TextField(max_length=230, default="Hi welcome to my profile.")

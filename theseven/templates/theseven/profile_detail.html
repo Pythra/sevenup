@@ -7,7 +7,7 @@
 @media( max-width:768px){
         #box{ width:320px; }}
 
-          #prodp{height:70px; width:70px; border:1px solid lightgrey;
+          #prodp{height:75px; width:75px; border:1px solid lightgrey;
         border-radius:50%;
        background-repeat:no-repeat;
        background-size:cover;
@@ -30,17 +30,16 @@
   {% load static %}
 
 {% if request.user.profile.visits == 1 %}
-{% include 'milk/profile_form.html' %}
+{% include 'theseven/profile_form.html' %}
 {% else %}
                  <div class="mt-3">
         <div class="row">
             <div class="col-4" style="display:block;">
                 {% if user.profile.dp %}
-                  <div id="prodp" style="background-image:url('{{ user.profile.dp.url }}'); float:right;">
+                  <div id="prodp" style="background-image:url('{{ user.profile.dp.url }}'); float:right;" data-toggle="modal" data-target="#modalpic">
                   </div>
                 {%  else %}
-                <div id="prodp" style="background-image:url('{% static 'theseven/default.jpg' %}'); float:right;">
-                  </div>
+        <i  style="font-size:75px; color:grey" class="fa fa-user-circle-o ml-4"></i>
                 {%  endif %}
             </div>
             <div class="col-8">
@@ -91,5 +90,15 @@
 {% endif %}
 <center>
 </center></div>
+{% endif %}
+<!-- Modal -->
+                {% if user.profile.dp %}
+<center>
+<div class="modal fade" id="modalpic" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="width:89%">
+      <img src="{{ user.profile.dp.url }}" style="max-width:89%">
+    </div>
+  </div>
+</center>
 {% endif %}
 {% endblock %}

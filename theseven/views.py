@@ -143,45 +143,28 @@ def profile_detail(request, pk):
     profile = Profile.objects.get(user=request.user)
     profile.visits = profile.visits + 1
     profile.save()
-    if profile.visits == 1:
-        if request.method == 'POST':
-            profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
-            if profile_form.is_valid():
-                profile_form.save()
-                messages.success(request, f'Your account has been updated!')
-                return HttpResponseRedirect(reverse('profile_detail', kwargs={'pk': request.user.id}))
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return HttpResponseRedirect(reverse('profile_detail', kwargs={'pk': request.user.id}))
 
-        else:
-            profile_form = ProfileForm(instance=request.user.profile)
-
-        context = {
-            'p_form': profile_form
-        }
-
-        if request.user.is_authenticated:
-            note_comments = Comment.objects.filter(post__creator=request.user, not_status='unseen').exclude(
-                name=request.user)
-            note_mentions = Comment.objects.filter(body__icontains=request.user, not_status='unseen').exclude(
-                name=request.user)
-            note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
-            context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
-                       'p_form': profile_form
-                       }
-        return render(request, 'theseven/profile_update.html', context)
-
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
     my_posts = Post.objects.filter(creator=user)[:5]
     my_comments = Comment.objects.filter(name=user)
-    context = {'user': user, 'posts': my_posts, 'my_comments': my_comments}
+    context = {'user': user, 'posts': my_posts, 'my_comments': my_comments, 'p_form': profile_form}
 
     if request.user.is_authenticated:
-        note_comments = Comment.objects.filter(post__creator=request.user, not_status='unseen').exclude(
+        note_comments = Comment.objects.filter(post__creator=request.user,      not_status='unseen').exclude(
             name=request.user)
         note_mentions = Comment.objects.filter(body__icontains=request.user, not_status='unseen').exclude(
             name=request.user)
         note_replies = Reply.objects.filter(comment__name=request.user, not_status='unseen')
         context = {'note_comments': note_comments, 'note_mentions': note_mentions, 'note_replies': note_replies,
-                   'user': user, 'posts': my_posts, 'my_comments': my_comments}
+                   'user': user, 'posts': my_posts, 'my_comments': my_comments, 'p_form': profile_form}
     return render(request, 'theseven/profile_detail.html', context)
 
 

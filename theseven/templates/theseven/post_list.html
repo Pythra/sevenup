@@ -29,14 +29,14 @@
 {% endblock %}
 {% block content %}
             <div id="sm">
-                {% block small_carousel %} {% include 'theseven/includes/small_carousel.html' %} {% endblock small_carousel %}
+                {% block small_carousel %} {% include 'theseven/includes/small_carousel.html/' %} {% endblock small_carousel %}
             </div>
 
 <small class="sm" style="color:brown; font-weight:600; margin-left:8px">LATEST POSTS</small>
 <h4 class="bg" style="color:brown; font-weight:600; margin-left:8px">LATEST POSTS</h4>
 <small class="sm pull-right text-muted" style="font-size:12px">{{date}}</small>
 {% if posts %}
-        {% include 'theseven/general_post_list.html' %}
+        {% include 'theseven/general_post_list.html/' %}
 {% endif %}
 
 <div>
